@@ -8,9 +8,28 @@
     <link rel="stylesheet" href="style.css">
     
 </head>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.0/moment.min.js"></script>
 <body>
+    <div class="side-menu" id="mySidenav">
+        <button class="closebtn" onclick="closeNav()">&times;</button>
+        <div class="side-menu-list" id="menu-list">
+            <button>Business</button>
+            <button>Entertainment</button>
+            <button>General</button>
+            <button>Health</button>
+            <button>Science</button>
+            <button>Sports</button>
+            <button>Technology</button>
+        </div>
+    </div>
+    <i class="fas fa-bars hide icon-button" onclick="openNav()"></i>
 
     <section class="container">
+        <div>
+            <input id="search-input"/>
+            <button class="search-button" onclick="getNewsByKeyword()">search</button>
+        </div>
+
         <section>
             <div class="head-line">
                 <svg viewBox="0 0 184 25" fill="#000">
@@ -18,39 +37,41 @@
                 </path>
             </svg></div>
         </section>
-        <div class="menus">
-            <button>Sport</button>
-            <button>Tech</button>
-            <button>World</button>
-            <button>Finance</button>
-            <button>Politics</button>
-            <button>Business</button>
-            <button>Economics</button>
-            <button>Entertainment</button>
-            <button>Beauty</button>
-            <button>Travel</button>
-            <button>Music</button>
-            <button>Food</button>
-            <button>Science</button>
-            <button>Gaming</button>
-            <button>Energy</button>
-        </div>
+
+        <section>
+            <div class="menus">
+                <button>Business</button>
+                <button>Entertainment</button>
+                <button>General</button>
+                <button>Health</button>
+                <button>Science</button>
+                <button>Sports</button>
+                <button>Technology</button>
+            </div>
+        </section>
+
         <section id="news-board">
             <div class="row news">
-                <h3>news title</h3>
-                <div>
-
+                <div class="col-lg-4">
+                    <!-- <img class="news-img-size" src="https://cdn.royalcanin-weshare-online.io/3DKT5m8BN5A8uWWASDMR/v4/ptpc1s3-welsh-pembroke-corgi-puppy-running-outside-in-a-garden">
                 </div>
-                <div>
-
-                </div>
+                <div class="col-lg-8">
+                    <h3>news title</h3>
+                    <p>@@@@@@@@@@@@@@@@@@@@@@@@</p>
+                    <div>
+                        출저 kbs 2024-02-22
+                    </div>
+                </div> -->
             </div>
 
+            
+
         </section>
+
     </section>
     
 
-
+    <script src="https://kit.fontawesome.com/895ceaea3b.js" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
     <script src="main.js"></script>
 </body>
