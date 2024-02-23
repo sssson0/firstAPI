@@ -1,49 +1,65 @@
 const API_key ='67d41dbe2f724684a835511fd60169c3';
 let newsList =[];
-const menus = document.querySelectorAll(".menus button")
+const menus = document.querySelectorAll(".menus button");
+const sideMenus = document.querySelectorAll(".side-menu-list");
+let url = new URL(
+    `https://neon-licorice-ee838f.netlify.app/top-headlines?country=kr&apiKey=${API_key}`
+    );
 
+
+
+
+const getNews = async() =>{
+    try{
+        const response = await fetch(url);
+        
+        const data = await response.json();
+        if(response.status === 200) {
+            if(data.articles.length === 0){
+                throw new Error("No result for this search!");
+            };
+            newsList = data.articles;
+            render();
+        } else{
+            throw new Error(data.message);
+        }
+    } catch (error){
+        console.log("ee",error.message);
+        errorRender(error.message)
+    }
+
+    
+};
+
+const getLatesNews = async()=>{
+    url = new URL(
+        `https://neon-licorice-ee838f.netlify.app/top-headlines?country=kr&apiKey=${API_key}`
+    );
+    getNews();
+};
+
+sideMenus.forEach((menu) => 
+menu.addEventListener("click",(event)=>getNewsByCategory(event))
+);
 menus.forEach((menu) => 
     menu.addEventListener("click",(event)=>getNewsByCategory(event))
     );
 
-const openNav = () => {
-    document.getElementById("mySidenav").style.width = "250px";
-};
-
-const closeNav = () => {
-    document.getElementById("mySidenav").style.width = "0";
-};
-
-const getLatesNews = async()=>{
-    const url = new URL(`https://neon-licorice-ee838f.netlify.app/top-headlines?country=kr&apiKey=${API_key}`
-    );
-    const response = await fetch(url);
-    const date = await response.json();
-    newsList = date.articles;
-    render();
-    console.log('ddd',newsList);
-}
-
 const getNewsByCategory = async (event) => {
         const category = event.target.textContent.toLowerCase();
     console.log('category',category)
-    const url = new URL(`https://neon-licorice-ee838f.netlify.app/top-headlines?country=kr&category=${category}&apiKey=${API_key}`)
-    const response = await fetch(url)
-    const data =await response.json();
-    console.groupCollapsed("DDD",data);
-    newsList = data.articles;
-    render();
+    url = new URL(
+        `https://neon-licorice-ee838f.netlify.app/top-headlines?country=kr&category=${category}&apiKey=${API_key}`
+        );
+    getNews();
 }
 const getNewsByKeyword = async() =>{
     const keyword = document.getElementById("search-input").value;
-    console.log("KK",keyword)
-    const url = new URL(`https://neon-licorice-ee838f.netlify.app/top-headlines?country=kr&q=${keyword}&apiKey=${API_key}`);
-    const response = await fetch(url)
-    const data =await response.json();
-    console.log("key",data)
-    newsList = data.articles;
-    render();
-}
+    url = new URL(
+        `https://neon-licorice-ee838f.netlify.app/top-headlines?country=kr&q=${keyword}&apiKey=${API_key}`
+        );
+        getNews();
+};
 
 
 const render = () => {
@@ -82,5 +98,20 @@ const render = () => {
     document.getElementById('news-board').innerHTML = newsHTML;
     
 }
+
+const errorRender = (errorMessage)=>{
+    const errorHTML = `<div class="alert alert-danger" role="alert">
+    ${errorMessage}
+    </div>`;
+    document.getElementById('news-board').innerHTML = errorHTML;
+};
+
+const openNav = () => {
+    document.getElementById("mySidenav").style.width = "250px";
+};
+
+const closeNav = () => {
+    document.getElementById("mySidenav").style.width = "0";
+};
 
 getLatesNews();
