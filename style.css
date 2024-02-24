@@ -79,23 +79,23 @@
     background-color: lightgrey;
     border-radius: 10px;
 }
-
+.side-menu{
+    display: none;
+}
 .icon-button{
+    display: none;
     margin: 15px;
     font-size: 20px;
-    color: black;
+    color: white;
     
 }
-.icon-button:hover{
-    font-size: 21px;
-    color: darkgray;
-}
+
 
 #search-input{
     margin-right: 10px;
 }
 .search-button{
-    border: none;
+    border: none ;
     border-radius: 5px;
     font-weight: 600;
     padding: 4px;
@@ -105,4 +105,24 @@
 .search-button:hover{
     color: white;
     background-color: darkgray;
+}
+
+.page-area{
+    display: flex;
+    justify-content: center;
+    margin-top: 30px;
+    color: black;
+}
+
+@media (max-width: 1199px){
+    .menus{
+        display: none;
+    }
+    .side-menu{
+        display: block;
+    }
+    .icon-button{
+        display: block;
+        color: black;
+    }
 }
